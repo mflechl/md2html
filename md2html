@@ -1,0 +1,91 @@
+#!/bin/bash
+#to use, first get and install pandoc from pandoc.org in the directoy below:
+
+pandocpath=/afs/cern.ch/user/m/mflechl/h2tau/md2html/pandoc-2.4/bin/
+
+function fixbullet {
+    lines=()
+    ctr=0
+    while IFS= read -r aline; do 
+	lines[$ctr]+=$aline
+	let ctr=$ctr+1
+    done < ${1}
+
+    if [ $ctr -eq 0 ]; then
+	return
+    fi
+
+    rm -f new.md
+    for i in `seq 0 $(( ${#lines[@]} - 1 ))`; do
+	if [ "${lines[$i]:0:1}" == "*" ] && [ $i -ne 0 ]; then
+	    tmp="${lines[$(($i-1))]}"
+	    line_before="${tmp#"${tmp%%[![:space:]]*}"}" #trim leading white space
+	    if [ "${line_before:0:1}" != "*" ] && [ "${line_before}" != "" ]; then
+		echo "" >>new.md
+	    fi
+	fi
+	echo "${lines[$i]}" >>new.md
+    done
+    mv new.md ${1}
+}
+
+function addtablestyle {
+
+    tstyle="
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+"
+
+    echo $tstyle >>$1
+
+}
+
+function addgitlablink {
+
+    ttext="
+<font size='3' color='red'>This is an html mirror of <a href='https://gitlab.cern.ch/cms-htt/sync/blob/master/README.md'>this gitlab page</a>.</font><br>
+It is regularly updated but it may take a few hours to pick up changes. You need to go to the <a href='https://gitlab.cern.ch/cms-htt/sync/blob/master/README.md'>gitlab page</a> if you want to edit the information here.<br>
+Last update: `date`
+"
+
+  echo $ttext >tmp
+  cat $1 >>tmp
+  mv tmp $1
+}
+
+for d in `ls -d */ .`; do 
+    cd $d; 
+    for m in `ls *.md 2>/dev/null | sed s'#\.md##'g`; do 
+	echo $m 
+	fixbullet ${m}.md
+	if [ "$d" == "." ]; then
+	    ${pandocpath}/pandoc -s --mathjax                                           -f markdown -t html5 ${m}.md -o ${m}.html
+	    addgitlablink ${m}.html
+	else
+	    ${pandocpath}/pandoc -s --mathjax -A ../../footer.html -B ../../footer.html -f markdown -t html5 ${m}.md -o ${m}.html
+	fi
+	sed -i s'#\.md">#.html">#'g ${m}.html
+#	sed -i "" s'#\$`##'g ${m}.html
+#	sed -i "" s'#`\$##'g ${m}.html
+	sed -i s'#\\(`#\\(#'g ${m}.html
+	sed -i s'#`\\)#\\)#'g ${m}.html
+	addtablestyle ${m}.html
+	rm -rf ${m}.md
+    done; 
+    cd -; 
+done

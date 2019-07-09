@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#cd smhtt
+#git pull
+#cd ..
+
+git clone ssh://git@gitlab.cern.ch:7999/cms-htt/sync.git smhtt
+
+rm -rf smhtt_tmp
+cp -pr smhtt smhtt_tmp
+cd smhtt_tmp
+rm -rf .git
+
+../md2html
+
+cd ..
+rm -rf ~/www/smhtt
+cp -fpr smhtt_tmp ~/www/smhtt

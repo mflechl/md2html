@@ -1,0 +1,118 @@
+/afs/desy.de/user/a/aakhmets/public/2017-sync/23_11_2018/VBFHToTauTauM125_RunIIFall17MiniAODv2_PU2017_13TeV_MINIAOD_powheg-pythia8_v1_et.root
+
+tree name: "ntuple"
+
+dataset (MiniAOD): /VBFHToTauTau_M125_13TeV_powheg_pythia8/RunIIFall17MiniAODv2-PU2017_12Apr2018_94X_mc2017_realistic_v14-v1/MINIAODSIM 
+CMSSW release used for skimming: CMSSW_9_4_11_cand2
+GT used for skimming: 94X_mc2017_realistic_v15
+
+
+Trigger flag naming:
+
+    trg_singlemuon_24: HLT_IsoMu24_v
+    trg_singlemuon_27: HLT_IsoMu27_v
+    trg_crossmuon_mu20tau27: HLT_IsoMu20_eta2p1_LooseChargedIsoPFTau27_eta2p1_CrossL1_v
+    trg_singleelectron_27: HLT_Ele27_WPTight_Gsf_v
+    trg_singleelectron_32: HLT_Ele32_WPTight_Gsf_v
+    trg_singleelectron_32_fallback: HLT_Ele32_WPTight_Gsf_DoubleL1EG_v
+    trg_singleelectron_35: HLT_Ele35_WPTight_Gsf_v
+    trg_crossele_ele24tau30: HLT_Ele24_eta2p1_WPTight_Gsf_LooseChargedIsoPFTau30_eta2p1_CrossL1_v
+    trg_doubletau_35_tightiso_tightid: HLT_DoubleTightChargedIsoPFTau35_Trk1_TightID_eta2p1_Reg_v
+    trg_doubletau_40_mediso_tightid: HLT_DoubleMediumChargedIsoPFTau40_Trk1_TightID_eta2p1_Reg_v
+    trg_doubletau_40_tightiso: HLT_DoubleTightChargedIsoPFTau40_Trk1_eta2p1_Reg_v
+    trg_singletau_leading: HLT_MediumChargedIsoPFTau180HighPtRelaxedIso_Trk50_eta2p1_v
+    trg_singletau_trailing: HLT_MediumChargedIsoPFTau180HighPtRelaxedIso_Trk50_eta2p1_v
+    trg_muonelectron_mu12ele23: HLT_Mu12_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ_v
+    trg_muonelectron_mu23ele12: HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ_v
+    trg_muonelectron_mu8ele23: HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ_v
+
+6 June 2018:
+
+    Status: upload after some sync rounds with Vienna
+
+    Information on selection: https://cernbox.cern.ch/index.php/s/it7n9QYsr1skhVm (slides 16-20)  and https://twiki.cern.ch/twiki/bin/view/CMS/HiggsToTauTauWorking2017#Synchronisation_Ntuple
+
+    Difference to this selection:
+
+    - No METFilters
+    - No trigger object matching before pair selection, applied into the trigger flags afterwards. Further trigger dependent kin. cuts also in trigger flags
+    - Tau Fall1v1 byIso ID is used (so the Summer17 training), before pair selection, VVLoose WP is applied on taus
+    - Kinematic Cuts as stated on Twiki
+    - B-tagging: DeepCSV, 2017 WP's 2017_V2 SF's, but MSSM 2016 b-tagging efficiencies
+
+3 July 2018:
+
+    Status: update of selection
+
+    Difference to previous upload:
+
+    - taus: MVA Fall17v2 byIso ID's used
+    - electrons: switched from delta beta corrected to rho-corrected isolation
+    - kinematics em: pt(e) > 13, pt(mu) > 13
+    - kinematics et: pt(e) > 25, pt(tau) > 20
+    - kinematics mt: pt(mu) > 21, pt(tau) > 20
+    - kinematics tt: pt(tau1) > 40, pt(tau2) > 40
+
+7 July 2018:
+
+    Status: update of electron selection:
+
+    Difference to previous upload:
+
+    - electrons: switched to "elec->gsfTrack()->hitPattern().numberOfLostHits(reco::HitPattern::MISSING_INNER_HITS)" prescription for expected number of missing inner hits
+
+10 July 2018:
+
+    Status: update of electron selection:
+
+    Difference to previous upload:
+
+    - generator matching: switched to algorithm used by Wisconsin to be more consistent. See implementation at https://github.com/KIT-CMS/Artus/blob/dictchanges/KappaAnalysis/src/Utility/GeneratorInfo.cc#L77-L165
+
+15 October 2018:
+
+    Status: update to recent recommendations
+
+    Difference to previous upload:
+
+    - MET: switched to latest recipe (v2) in order to mitigate EE noise: https://twiki.cern.ch/twiki/bin/view/CMS/MissingETUncertaintyPrescription#Instructions_for_9_4_X_X_9_for_2
+    - Jets: reapply JEC from 94X_mc2017_realistic_v16 global tag
+    - Electrons:
+        * switch to V2 ID's for cut-based & MVA-based types
+        * use for MVA-based noIso versions
+        * for signal electrons, MVA wp90 (like for extra lepton veto)
+        * 94X effective areas used (consistent with V2)
+        * reference: https://twiki.cern.ch/twiki/bin/view/CMS/MultivariateElectronIdentificationRun2#Recommended_MVA_Recipe_V2_for_re
+    - B-jets: using still DeepCSV, but with new b-tagging efficiencies.
+
+    To be updated in the next iteration:
+
+    - MET: recoil corrections to be applied
+    - Taus:
+        * energy scale correction to be applied & propagated for signal pair to MET
+        * e -> tau fake energy scale correction to be applied propagated for signal pair to MET
+
+22 November 2018:
+
+    Status: update to be considered final for SM H->TauTau
+
+    Difference to previous upload:
+
+    - kinematics:
+        * em: pt(e) > 13, pt(mu) > 10
+        * et: pt(e) > 25, pt(tau) > 23
+        * mt: pt(mu) > 21, pt(tau) > 23
+        * tt: pt(tau1) > 40, pt(tau2) > 40
+
+    - MET:
+        * using recipe v2 with 94X_mc2017_realistic_v15 global tag
+        * MET recoils corrections are applied, where necessary (resonances)
+        * corrections on the signal pair are propagated to the MET (Tau ES & e->Tau fake ES corrections in mt, et, tt)
+    - Jets:
+        * reapply JEC from 94X_mc2017_realistic_v15 global tag
+        * remove noisy jets (with pt < 50 GeV && abs(eta) > 2.65 && abs(eta) < 3.)
+    - Taus:
+        * energy scale correction to be applied & propagated for signal pair to MET
+        * e -> tau fake energy scale correction to be applied propagated for signal pair to MET
+    
+    Details on selection & corrections to be found here: https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsToTauTauWorking2017#etau%20checklist

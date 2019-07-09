@@ -1,0 +1,108 @@
+# first lepton 
+l1_pt							pt_1
+l1_eta							eta_1
+l1_phi							phi_1
+l1_m							m_1
+l1_q							q_1
+l1_gen_match						gen_match_1
+
+# second lepton
+l2_pt							pt_2
+l2_eta							eta_2
+l2_phi							phi_2
+l2_m							m_2
+l2_q							q_2
+l2_gen_match						gen_match_2
+
+# event vars
+event							evt
+n_up							NUP
+n_pu							npu
+n_pv							npv
+#is_data
+
+# generator
+#gen_boson_pt
+#gen_boson_mass
+
+# vetoes
+veto_dilepton						dilepton_veto
+veto_extra_elec						extraelec_veto
+veto_extra_muon						extramuon_veto
+
+# jets
+n_jets_pt20						njetspt20
+j1_pt							jpt_1
+j1_eta							jeta_1
+j1_phi							jphi_1
+j1_pumva						jmva_1
+#j1_flavour_parton			
+#j1_flavour_hadron
+j1_rawf							jrawf_1
+j2_pt							jpt_2
+j2_eta							jeta_2
+j2_phi							jphi_2
+j2_pumva						jmva_2
+#j2_flavour_parton
+#j2_flavour_hadron
+j2_rawf							jrawf_2
+
+# bjets
+n_bjets							nbtag
+b1_pt							bpt_1
+b1_eta							beta_1
+b1_phi							bphi_1
+b1_pumva						bmva_1
+#b1_flavour_parton			
+#b1_flavour_hadron
+b1_rawf							brawf_1
+b2_pt							bpt_2
+b2_eta							beta_2
+b2_phi							bphi_2
+b2_pumva						bmva_2
+#b2_flavour_parton
+#b2_flavour_hadron
+b2_rawf							brawf_2
+
+# weights
+weight_pu						puweight
+weight_dy						zPtReweightWeight
+#weight_njet
+
+# tau ids
+l1_decayModeFinding					decayModeFinding_1
+l1_byIsolationMVArun2017v2DBoldDMwLTraw2017		byIsolationMVArun2017v2DBoldDMwLTraw2017_1
+l1_byVVLooseIsolationMVArun2017v2DBoldDMwLT2017		byVVLooseIsolationMVArun2017v2DBoldDMwLT2017_1
+l1_byVLooseIsolationMVArun2017v2DBoldDMwLT2017		byVLooseIsolationMVArun2017v2DBoldDMwLT2017_1
+l1_byLooseIsolationMVArun2017v2DBoldDMwLT2017		byLooseIsolationMVArun2017v2DBoldDMwLT2017_1
+l1_byMediumIsolationMVArun2017v2DBoldDMwLT2017		byMediumIsolationMVArun2017v2DBoldDMwLT2017_1
+l1_byTightIsolationMVArun2017v2DBoldDMwLT2017		byTightIsolationMVArun2017v2DBoldDMwLT2017_1
+l1_byVTightIsolationMVArun2017v2DBoldDMwLT2017		byVTightIsolationMVArun2017v2DBoldDMwLT2017_1
+l1_byVVTightIsolationMVArun2017v2DBoldDMwLT2017		byVVTightIsolationMVArun2017v2DBoldDMwLT2017_1
+l1_againstElectronVLooseMVA6				againstElectronVLooseMVA6_1
+l1_againstElectronTightMVA6				againstElectronTightMVA6_1
+l1_againstMuonTight3					againstMuonTight3_1
+l1_againstMuonLoose3					againstMuonLoose3_1
+l1_chargedIsoPtSum					chargedIsoPtSum_1
+l1_neutralIsoPtSum					neutralIsoPtSum_1
+l1_puCorrPtSum						puCorrPtSum_1
+l1_footprintCorrection					footprintCorrection_1
+l1_photonPtSumOutsideSignalCone				photonPtSumOutsideSignalCone_1
+l2_decayModeFinding					decayModeFinding_2
+l2_byIsolationMVArun2017v2DBoldDMwLTraw2017		byIsolationMVArun2017v2DBoldDMwLTraw2017_2
+l2_byVVLooseIsolationMVArun2017v2DBoldDMwLT2017		byVVLooseIsolationMVArun2017v2DBoldDMwLT2017_2
+l2_byVLooseIsolationMVArun2017v2DBoldDMwLT2017		byVLooseIsolationMVArun2017v2DBoldDMwLT2017_2
+l2_byLooseIsolationMVArun2017v2DBoldDMwLT2017		byLooseIsolationMVArun2017v2DBoldDMwLT2017_2
+l2_byMediumIsolationMVArun2017v2DBoldDMwLT2017		byMediumIsolationMVArun2017v2DBoldDMwLT2017_2
+l2_byTightIsolationMVArun2017v2DBoldDMwLT2017		byTightIsolationMVArun2017v2DBoldDMwLT2017_2
+l2_byVTightIsolationMVArun2017v2DBoldDMwLT2017		byVTightIsolationMVArun2017v2DBoldDMwLT2017_2
+l2_byVVTightIsolationMVArun2017v2DBoldDMwLT2017		byVVTightIsolationMVArun2017v2DBoldDMwLT2017_2
+l2_againstElectronVLooseMVA6				againstElectronVLooseMVA6_2
+l2_againstElectronTightMVA6				againstElectronTightMVA6_2
+l2_againstMuonTight3					againstMuonTight3_2
+l2_againstMuonLoose3					againstMuonLoose3_2
+l2_chargedIsoPtSum					chargedIsoPtSum_2
+l2_neutralIsoPtSum					neutralIsoPtSum_2
+l2_puCorrPtSum						puCorrPtSum_2
+l2_footprintCorrection					footprintCorrection_2
+l2_photonPtSumOutsideSignalCone				photonPtSumOutsideSignalCone_2
